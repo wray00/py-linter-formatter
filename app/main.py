@@ -3,14 +3,12 @@ error_dict = {
     "column_number": "column",
     "text": "message",
     "code": "name",
-    "filename": "source",
-    "physical_line": "source"
 }
 
 
 def format_linter_error(error: dict) -> dict:
     return {**{error_dict[property_key]: property_value for property_key,
-            property_value in error.items()},
+            property_value in error.items() if property_key in error_dict},
             "source": "flake8"}
 
 
